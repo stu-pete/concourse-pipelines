@@ -6,6 +6,7 @@ resources:
     branch: master
 - name: logstash_translate_plugin_concourse
   type: git
+  source:
     uri: https://github.com/stu-pete/logstash_translate_plugin_concourse.git
     branch: master
 
@@ -13,6 +14,9 @@ jobs:
 - name: logstash
   plan:
   - get: logstash_git
+  - get: logstash_translate_plugin_concourse
+
+
   - task: logstash_build
     config:
       platform: linux
@@ -25,7 +29,7 @@ jobs:
 
       inputs:
       - name: logstash_git
-
+      - name: logstash_translate_plugin_concourse
       run:
-        path: ./skynet_logstash/task/logstash_build/run.sh
+        path: ./logstash_translate_plugin_concourse/task/logstash_build/run.sh
 
