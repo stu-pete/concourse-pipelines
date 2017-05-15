@@ -1,0 +1,16 @@
+---
+platform: linux
+
+
+image_resource:
+  type: docker-image
+  source:
+    repository: jruby
+    tag: "latest"
+
+
+inputs:
+- name: logstash_git
+
+run:
+  path: task/logstash_build/run.sh

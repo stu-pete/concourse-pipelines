@@ -1,0 +1,31 @@
+resources:
+- name: logstash_git
+  type: git
+  source:
+    uri: https://github.com/elastic/logstash.git
+    branch: master
+- name: logstash_translate_plugin_concourse
+  type: git
+    uri: https://github.com/stu-pete/logstash_translate_plugin_concourse.git
+    branch: master
+
+jobs:
+- name: logstash
+  plan:
+  - get: logstash_git
+  - task: logstash_build
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: jruby
+          tag: "latest"
+
+
+      inputs:
+      - name: logstash_git
+
+      run:
+        path: ./skynet_logstash/task/logstash_build/run.sh
+
