@@ -4,17 +4,25 @@ resources:
   source:
     uri: https://github.com/elastic/logstash.git
     branch: master
-- name: logstash_translate_plugin_concourse
+- name: logstash_translate_plugin_concourse_ci
   type: git
   source:
     uri: https://github.com/stu-pete/logstash_translate_plugin_concourse.git
     branch: master
-
+- name: s3_artifact_bucket
+  type: s3
+  source: 
+    bucket: {{s3_bucket}}
+    region: {{s3_region}}
+    access_key_id: {{s3_access_key}}
+    secret_access_key: {{s3_secret_key}}
+    regexp: logstash_latest.tar.gz
+  
 jobs:
 - name: logstash
   plan:
   - get: logstash_git
-  - get: logstash_translate_plugin_concourse
+  - get: logstash_translate_plugin_concourse_ci
 
 
   - task: logstash_build
@@ -29,6 +37,11 @@ jobs:
 
       inputs:
       - name: logstash_git
-      - name: logstash_translate_plugin_concourse
+      - name: logstash_translate_plugin_concourse_ci
       run:
-        path: ./logstash_translate_plugin_concourse/task/logstash_build/run.sh
+        path: ./logstash_translate_plugin_concourse_ci/task/logstash_build/run.sh
+  - put: s3_artifact_bucket
+    params:
+      file: ./logstash_git/build_output/logstash_latest.tar.gz
+      acl: public-read
+    

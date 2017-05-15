@@ -10,5 +10,5 @@ rake bootstrap
 ./bin/logstash-plugin install logstash-filter-translate
 mkdir build_output
 
-tar -vczf build_output/logstash.tar.gz bin
+tar -vczf build_output/logstash_latest.tar.gz bin
 
