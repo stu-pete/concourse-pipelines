@@ -32,4 +32,3 @@ jobs:
       - name: logstash_translate_plugin_concourse
       run:
         path: ./logstash_translate_plugin_concourse/task/logstash_build/run.sh
-
