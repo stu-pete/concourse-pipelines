@@ -8,3 +8,5 @@ apt-get install openjdk-8-jdk -y
 cd logstash_git
 rake bootstrap
 
+
+xxx
