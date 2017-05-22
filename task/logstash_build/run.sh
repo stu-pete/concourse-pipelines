@@ -3,7 +3,7 @@
 echo "ReInstalling jdk because docker image misses tools.jar"
 
 apt-get update
-apt-get install openjdk-8-jdk -y
+apt-get install openjdk-8-jdk git -y
 
 cd logstash_git
 
@@ -20,11 +20,15 @@ mkdir build_output
 
 echo "------   	   TARBALLING  		-------"
 mkdir LS_HOME
-export LS_HOME=LS_HOME
 mkdir $LS_HOME/build
+
+
 rake artifact:tar
-cp -R LS_HOME/build/* ../build_output/
+
+cp -R build/* ../build_output/
 rake artifact:tar
+
+
 tar -vczf ../build_output/logstash_latest.tar.gz bin
 
 
