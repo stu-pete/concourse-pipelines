@@ -9,7 +9,7 @@ cd logstash_git
 
 echo "------	  RAKING LOGSTASH	-------"
 
-rake bootstrap --trace
+rake bootstrap 
 
 echo "------	    RAKING DONE  	-------"
 
@@ -19,7 +19,11 @@ echo "------ INSTALLING TRANSLATE PLUGIN ------"
 mkdir build_output
 
 echo "------   	   TARBALLING  		-------"
-
+mkdir LS_HOME
+export $LS_HOME=LS_HOME
+rake artifact:tar
+cp -R LS_HOME/build/* ../build_output/
+rake artifact:tar
 tar -vczf ../build_output/logstash_latest.tar.gz bin
 
 
