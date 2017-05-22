@@ -20,7 +20,8 @@ mkdir build_output
 
 echo "------   	   TARBALLING  		-------"
 mkdir LS_HOME
-export $LS_HOME=LS_HOME
+export LS_HOME=LS_HOME
+mkdir $LS_HOME/build
 rake artifact:tar
 cp -R LS_HOME/build/* ../build_output/
 rake artifact:tar
