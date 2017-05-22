@@ -45,6 +45,6 @@ jobs:
         
   - put: s3_artifact_bucket
     params:
-      file: ./build_output/logstash_latest.tar.gz
+      file: logstash_git/build/logstash-(.*)
       acl: public-read
   - get: s3_artifact_bucket

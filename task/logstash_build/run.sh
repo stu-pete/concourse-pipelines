@@ -26,9 +26,6 @@ mkdir $LS_HOME/build
 rake artifact:tar
 
 cp -R build/* ../build_output/
-rake artifact:tar
 
-
-tar -vczf ../build_output/logstash_latest.tar.gz bin
-
+ls -l ../build_output/
 
