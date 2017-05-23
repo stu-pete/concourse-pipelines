@@ -15,6 +15,7 @@ echo "------	    RAKING DONE  	-------"
 
 echo "------ CREATING TRANSLATE PLUGIN  ------"
 
+bin/logstash-plugin prepare-offline-pack logstash-filter-translate
 cp logstash-offline-plugins-*.zip build/translate.zip
 
 echo "------   	   TARBALLING  		-------"
