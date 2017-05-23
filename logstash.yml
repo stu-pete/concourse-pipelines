@@ -16,6 +16,7 @@ resources:
     region_name: {{s3_region}} 
     access_key_id: {{s3_access_key}}
     secret_access_key: {{s3_secret_key}}
+    versioned_file: logstash_latest.tar.gz
   
 jobs:
 - name: logstash
@@ -44,6 +45,6 @@ jobs:
         
   - put: s3_artifact_bucket
     params:
-      file: build_output/logstash(.*).tar.gz
+      file: build_output/logstash_latest.tar.gz
       acl: public-read
   - get: s3_artifact_bucket
