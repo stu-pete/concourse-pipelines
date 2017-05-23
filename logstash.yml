@@ -16,7 +16,6 @@ resources:
     region_name: {{s3_region}} 
     access_key_id: {{s3_access_key}}
     secret_access_key: {{s3_secret_key}}
-    versioned_file: logstash_latest.tar.gz
   
 jobs:
 - name: logstash
@@ -41,10 +40,10 @@ jobs:
       run:
         path: ./logstash_translate_plugin_concourse_ci/task/logstash_build/run.sh
       outputs:
-      - name: build_output
+     - name: build_output/
         
   - put: s3_artifact_bucket
     params:
-      file: logstash_git/build/logstash-(.*)
+      file: build_output/logstash(.*.)tar.gz
       acl: public-read
   - get: s3_artifact_bucket
