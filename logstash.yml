@@ -38,12 +38,12 @@ jobs:
       - name: logstash_git
       - name: logstash_translate_plugin_concourse_ci
       run:
-        path: ./logstash_translate_plugin_concourse_ci/task/logstash_build/run.sh
+        path: logstash_translate_plugin_concourse_ci/task/logstash_build/run.sh
       outputs:
-     - name: build_output/
+      - name: build_output/
         
   - put: s3_artifact_bucket
     params:
-      file: build_output/logstash(.*.)tar.gz
+      file: build_output/logstash(.*).tar.gz
       acl: public-read
   - get: s3_artifact_bucket
