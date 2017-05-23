@@ -8,24 +8,19 @@ apt-get install openjdk-8-jdk git -y
 cd logstash_git
 
 echo "------	  RAKING LOGSTASH	-------"
+rake artifact:tar
 
-rake bootstrap 
 
 echo "------	    RAKING DONE  	-------"
 
-echo "------ INSTALLING TRANSLATE PLUGIN ------"
+echo "------ CREATING TRANSLATE PLUGIN  ------"
 
-./bin/logstash-plugin install logstash-filter-translate
-mkdir build_output
+cp logstash-offline-plugins-*.zip build/translate.zip
 
 echo "------   	   TARBALLING  		-------"
-mkdir LS_HOME
-mkdir $LS_HOME/build
 
-
-rake artifact:tar
-
-cp -R build/* ../build_output/
+rm -r build/bootstrap
+tar -czf ../build_output/logstash_latest.tar.gz  build/*
 
 ls -l ../build_output/
 
