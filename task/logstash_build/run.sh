@@ -9,7 +9,7 @@ cd logstash_git
 
 echo "------	  RAKING LOGSTASH	-------"
 rake artifact:tar
-
+ls -l build/bootstrap/
 
 echo "------	    RAKING DONE  	-------"
 
