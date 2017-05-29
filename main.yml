@@ -4,10 +4,10 @@ resources:
   source:
     uri: https://github.com/elastic/logstash.git
     branch: 5.x
-- name: logstash_translate_plugin_concourse_ci
+- name: concourse_pipelines
   type: git
   source:
-    uri: https://github.com/stu-pete/logstash_translate_plugin_concourse.git
+    uri: https://github.com/stu-pete/concourse-pipelines.git
     branch: master
 - name: s3_artifact_bucket
   type: s3
@@ -20,10 +20,28 @@ resources:
     private: true
   
 jobs:
+- name: eureka
+  plan: 
+  - get: eureka_git
+  - get: concourse_pipelines
+  - task: eureka_build
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          repository: gradle
+          tag: "8-jdk-alpine"
+      inputs:
+      - name: eureka_git
+      - name: concourse_pipelines
+      run:
+        path:  concourse_pipelines/task/eureka_build/run.sh
+    
 - name: logstash
   plan:
   - get: logstash_git
-  - get: logstash_translate_plugin_concourse_ci
+  - get: concourse_pipelines
 
 
   - task: logstash_build
@@ -38,9 +56,9 @@ jobs:
 
       inputs:
       - name: logstash_git
-      - name: logstash_translate_plugin_concourse_ci
+      - name: concourse_pipelines
       run:
-        path: logstash_translate_plugin_concourse_ci/task/logstash_build/run.sh
+        path: concourse_pipelines/task/logstash_build/run.sh
       outputs:
       - name: build_output/
         
