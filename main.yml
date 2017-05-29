@@ -41,8 +41,6 @@ jobs:
   plan:
   - get: logstash_git
   - get: concourse_pipelines
-
-
   - task: logstash_build
     config:
       platform: linux
@@ -51,8 +49,6 @@ jobs:
         source:
           repository: jruby
           tag: "latest"
-
-
       inputs:
       - name: logstash_git
       - name: concourse_pipelines
