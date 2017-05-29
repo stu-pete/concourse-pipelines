@@ -42,7 +42,8 @@ jobs:
       - name: concourse_pipelines
       run:
         path:  concourse_pipelines/task/eureka_build/run.sh
-
+      outputs:
+      - name: eureka_build_output
 
 - name: logstash
   plan:
@@ -62,8 +63,8 @@ jobs:
       run:
         path: concourse_pipelines/task/logstash_build/run.sh
       outputs:
-      - name: build_output/
+      - name: logstash_build_output/
         
   - put: s3_artifact_bucket
     params:
-      file: build_output/logstash_latest.tar.gz
+      file: logstash_build_output/logstash_latest.tar.gz

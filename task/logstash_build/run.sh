@@ -21,7 +21,7 @@ cp logstash-offline-plugins-*.zip build/translate.zip
 echo "------   	   TARBALLING  		-------"
 
 rm -r build/bootstrap
-tar -czf ../build_output/logstash_latest.tar.gz  build/*
+tar -czf ../logstash_build_output/logstash_latest.tar.gz  build/*
 
-ls -l ../build_output/
+ls -l ../logstash_build_output/
 
