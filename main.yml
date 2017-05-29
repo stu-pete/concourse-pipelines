@@ -18,7 +18,6 @@ resources:
     secret_access_key: {{s3_secret_key}}
     versioned_file: logstash_latest.tar.gz
     private: true
-  
 jobs:
 - name: eureka
   plan: 
