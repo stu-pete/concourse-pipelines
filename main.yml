@@ -4,6 +4,12 @@ resources:
   source:
     uri: https://github.com/elastic/logstash.git
     branch: 5.x
+- name: eureka_git
+  type: git
+  source:
+    uri: https://github.com/Netflix/eureka.git
+    branch: 1.4.x
+
 - name: concourse_pipelines
   type: git
   source:
@@ -30,7 +36,7 @@ jobs:
         type: docker-image
         source:
           repository: gradle
-          tag: "8-jdk-alpine"
+          tag: "latest"
       inputs:
       - name: eureka_git
       - name: concourse_pipelines
