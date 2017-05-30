@@ -1,5 +1,5 @@
 #!/bin/sh
-
+set -e -x
 echo "Will build eureka now"
 cd eureka_git
 export TERM=${TERM:-dumb}
