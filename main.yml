@@ -3,7 +3,9 @@ resources:
   type: git
   source:
     uri: https://github.com/elastic/logstash.git
-    branch: 5.x
+    branch: 5.4
+    tag: 5.4.x
+
 - name: eureka_git
   type: git
   source:
