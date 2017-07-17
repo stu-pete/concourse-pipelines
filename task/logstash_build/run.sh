@@ -15,8 +15,8 @@ echo "------	    RAKING DONE  	-------"
 
 echo "------ CREATING TRANSLATE PLUGIN  ------"
 bin/logstash-plugin install logstash-filter-translate
-bin/logstash-plugin install logstash-filter-kubernetes-metadata
-bin/logstash-plugin prepare-offline-pack logstash-filter-kubernetes-metadata
+bin/logstash-plugin install logstash-filter-kubernetes_metadata
+bin/logstash-plugin prepare-offline-pack logstash-filter-kubernetes_metadata
 bin/logstash-plugin prepare-offline-pack logstash-filter-translate
 cp logstash-offline-plugins-*.zip build/translate.zip
 
