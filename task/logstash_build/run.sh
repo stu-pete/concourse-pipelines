@@ -3,7 +3,7 @@ set -e -x
 echo "ReInstalling jdk because docker image misses tools.jar"
 
 apt-get update
-apt-get install openjdk-8-jdk git -y
+apt-get install openjdk-8-jdk git -y --fix-missing
 
 cd logstash_git
 
